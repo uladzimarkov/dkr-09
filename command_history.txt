@@ -1,0 +1,39 @@
+root@u-45755:/home/user/Docker/task9# docker build -t nginx:rbm-dkr-092 .
+Processing triggers for libc-bin (2.27-3ubuntu1.4) ...
+Removing intermediate container 7dbfe7e6cada
+ ---> 1602bcde3944
+Step 3/7 : COPY nginx.conf /etc/nginx/nginx.conf
+ ---> c60c69527445
+Step 4/7 : ENTRYPOINT []
+ ---> Running in bbbae12c08f7
+Removing intermediate container bbbae12c08f7
+ ---> 1540908eaa81
+Step 5/7 : CMD ["nginx", "-g", "daemon off;"]
+ ---> Running in 9c6197e81dae
+Removing intermediate container 9c6197e81dae
+ ---> 70775f8c35ff
+Step 6/7 : WORKDIR /etc/nginx/
+ ---> Running in eedc8fdf7e80
+Removing intermediate container eedc8fdf7e80
+ ---> be67d4332fbc
+Step 7/7 : VOLUME /var/lib/nginx
+ ---> Running in 2395c5cf13ba
+Removing intermediate container 2395c5cf13ba
+ ---> f06a497e7e9f
+Successfully built f06a497e7e9f
+Successfully tagged nginx:rbm-dkr-092
+
+root@u-45755:/home/user/Docker/task9# docker images 
+REPOSITORY    TAG             IMAGE ID       CREATED          SIZE
+nginx         rbm-dkr-092     f06a497e7e9f   10 seconds ago   163MB
+
+root@u-45755:/home/user/Docker/task9# docker run -d --name dckr-09 -p 127.0.0.1:8901:80 nginx:rbm-dkr-092
+5decda11e6138c5f4a8273b7a9cbcebad2ea1ff0b9faf7d97bb0295ca6df8d8c
+
+root@u-45755:/home/user/Docker/task9# docker ps
+CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS         PORTS                    NAMES
+5decda11e613   nginx:rbm-dkr-092   "nginx -g 'daemon of…"   7 seconds ago   Up 5 seconds   127.0.0.1:8901->80/tcp   dckr-09
+
+root@u-45755:/home/user/Docker/task9# curl http:/127.0.0.1:8901
+Welcome to the training program RebrainMe: Docker!
+
